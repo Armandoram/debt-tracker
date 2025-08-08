@@ -1,22 +1,33 @@
 # debt calculator
 def debt():
     total = []
+    debts = {}
+    
+
+    # name = input("Enter debt name: ")
+    # namedebt = float(input("Enter amount owed: "))
+    # debts[name] = amount
+
+
 
     while True:
-        raw_input = input(" Hi, what is the first amount you owe? (If done enter 0.): ")
-        cleaned_input = raw_input.replace("$","").replace(",","").strip()
-        try:
-            amount = float(cleaned_input)
-            if amount == 0:
+        name = input("Enter debt name (when finished enter done)")
+        if name == "done":
                 break
-            total.append(amount)
-            print(f"You added: $ {amount:.2f}")
-
+        try:
+            amount = float(input("Enter amount owed: "))
+            debts[name] = amount
+           
         except:
             print("Enter a valid number")
 
-    final_total = sum(total)
-    print(f"\n Total debt: ${final_total:.2f}")
+        print("\n All debts:")
+        for name, amount in debts.items():
+            print(f"{name}: ${amount:.2f}")
+
+    # adds all values
+    total_sum = sum(debts.values())
+    print(f"\n The total debt is: ${total_sum}")
 
 
     while True:
@@ -26,7 +37,7 @@ def debt():
                 truly = int(input("How many months?").strip())
 
 
-                divided = final_total / truly
+                divided = total_sum / truly
                 print(f" Your monthly payments would be: {divided} \n Thank you for using the app!")
                 break
 
